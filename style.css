@@ -57,3 +57,27 @@ body {
 hr {
   margin: 5px;
 }
+
+#back-button {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background-color: #505051;
+  color: rgb(221, 221, 221);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#back-button:hover {
+  background-color: #5568d3;
+  transform: scale(1.05);
+}
