@@ -4,7 +4,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
-  gap: 25px;
+  align-items: flex-start;
+  gap: 15px;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -15,7 +16,7 @@ body {
   text-align: center;
   width: 100%;
   color: rgb(221, 221, 221);
-  margin-bottom: -15px;
+  margin-bottom: -10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
