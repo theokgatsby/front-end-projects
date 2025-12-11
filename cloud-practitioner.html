@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>A+ Core 1 Notes</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a href="index.html" id="back-button">←</a>
+
+    <div class="section">Module 2 - Compute in the Cloud</div>
+
+    <div class="card">
+      <div class="subsection">Introduction to EC2</div>
+        <ul class="notes">
+        <hr />
+        <li>EC2 is flexible, cost-effective</li>
+        <li>On-demand capacity that's launched, scaled, terminated</li>
+        <li>Cost based on active usage</li>
+        <li>Multi-tenancy: Virtual machines are isolated but shares host resources</li>
+        <li>Choose instance type, operating system, storage to start</li>
+        <li>Divided into several instance familes</li>
+        <li>Three AMI's (Amazon Machine Image)</li>
+        <li>Create your own, pre-configured, purchase custom</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <div class="subsection">EC2 Instance Types</div>
+        <ul class="notes">
+        <hr />
+        <li style="font-weight: bold;">General purpose</li>
+        <li>Diverse workloads</li>
+        <li>Web services, code repos, Uncertain workloads</li>
+        <hr />
+        <li style="font-weight: bold;">Compute optimized</li>
+        <li>Gaming services, machine learning, scientific modeling</li>
+        <hr />
+        <li style="font-weight: bold;">Memory optimized</li>
+        <li>Processing large datasets, data analytics, databases</li>
+        <hr />
+        <li style="font-weight: bold;">Accelerated computing</li>
+        <li>Utilizes hardware accelerators like GPUs</li>
+        <li>Floating point calculations, graphics processing, machine learning</li>
+        <hr />
+        <li style="font-weight: bold;">Storage optimized</li>
+        <li>For people needing high performance for locally stored data</li>
+        <li>Data warehousing, I/O intensive applications</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">How to Provision AWS Resources</div>
+      <ul class="notes">
+        <hr />
+        <li>Control EC2 instance through API requests</li>
+        <li>Accessed by Management Console, CLI, or SDK</li>
+        <hr />
+        <li style="font-weight: bold;">AWS Management Console</li>
+        <li>Web/mobile interface, quick access to services, search, workflows, monitoring</li>
+        <hr />
+        <li style="font-weight: bold;">AWS CLI</li>
+        <li>Manage multiple services through command line</li>
+        <li>Automate tasks with scripts</li>
+        <hr />
+        <li style="font-weight: bold;">AWS SDK</li>
+        <li>Programmatic access to AWS services using various programming languages</li>
+        <hr />
+        <li>AWS handles security of the cloud (hardware and infrustructure)</li>
+        <li>Customer handles security of data and applications</li>
+        <li>Unmanaged service, customer deals with firewall, OS, updates</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">EC2 Pricing</div>
+      <ul class="notes">
+        <hr />
+        <li style="font-weight: bold;">On Demand (Most popular)</li>
+        <li>No upfront cost, no commitment, pay for what you use</li>
+        <hr />
+        <li style="font-weight: bold;">Savings Plan</li>
+        <li>Save by commiting to a consistent usage level for 1-3 years</li>
+        <li>Save up to 72%</li>
+        <hr />
+        <li style="font-weight: bold;">Reserved Instances</li>
+        <li>Commit to 1-3 year term for predictable usage</li>
+        <li>Save up to 75%</li>
+        <hr />
+        <li style="font-weight: bold;">Spot Instances</li>
+        <li>Bid on spare compute compacity</li>
+        <li>Save up to 90%</li>
+        <hr />
+        <li style="font-weight: bold;">Dedicated Instances</li>
+        <li>Hardware dedicated to your account</li>
+        <li>Isolated from other AWS customers</li>
+      </ul>
+    </div>
+
+
+
+  </body>
+</html>
