@@ -8,67 +8,174 @@
   </head>
   <body>
     <a href="index.html" id="back-button">←</a>
+    <div class="section">Section 11: Wireless Networks</div>
+    <div class="card">
+      <div class="subsection">Wireless Frequencies</div>
+      <ul class="notes">
+        <hr />
+        <li>Direct Sequence Spread Spectrum (DSSS)</li>
+        <li>Suboptimal</li>
+        <li>Susceptible to electrical interference</li>
+        <li>Inefficent use of spectrum</li>
+        <hr />
+        <li>Orthogonal Frequency Division Multiplexing (OFDM)</li>
+        <li>Most common</li>
+        <li>Minimizes interference and has higher rates of data</li>
+        <hr />
+        <li>2.4GHz band</li>
+        <li>Prone to interference from microwaves, bluetooth</li>
+        <li>To avoid overlap, use channels 1, 6, and 11</li>
+        <hr />
+        <li>5GHz band</li>
+        <li>Less interference, higher speeds, shorter range</li>
+        <li>24 non-overlapping channels at 20MHz width</li>
+        <li>Channel bonding enables creation of wider channels</li>
+        <li>Combine adjacent channels for stronger signal</li>
+        <hr />
+        <li>6GHz band</li>
+        <li>Newer standard (WiFi 6e + 7)</li>
+        <li>Even less interference, higher speeds, shorter range</li>
+      </ul>
+    </div>
 
-  <div class="section">Section 11: Wireless Networks</div>
+    <div class="card">
+      <div class="subsection">Wireless Standards</div>
+      <ul class="notes">
+        <hr />
+        <li>802.11a - 5GHz, 54Mbps, OFDM</li>
+        <li>802.11b - 2.4GHz, 11Mbps, DSSS</li>
+        <li>802.11g - 2.4GHz, 54Mbps, OFDM</li>
+        <li>802.11n - 2.4/5GHz, 600Mbps, MIMO, OFDM</li>
+        <li>802.11ac (WiFi 5) - 5GHz, 1Gbps+, MU-MIMO, OFDM</li>
+        <li>802.11ax (WiFi 6) - 2.4/5, 10Gbps+, OFDMA, MU-MIMO</li>
+        <li>802.11be (WiFi 7) - 2.4/5/6GHz, 30Gbps+</li>
+        <hr />
+        <li>MIMO (Multiple Input Multiple Output)</li>
+        <li>Multiple antennas for sending and receiving</li>
+        <li>Increases throughput and reliability</li>
+        <hr />
+        <li>MU-MIMO (Multi-User MIMO)</li>
+        <li>Supports multiple devices simultaneously</li>
+      </ul>
+    </div>
 
-  <div class="card">
-    <div class="subsection">Wireless Frequencies</div>
-    <ul class="notes">
-      <hr />
-      <li>Direct Sequence Spread Spectrum (DSSS)</li>
-      <li>Suboptimal</li>
-      <li>Susceptible to electrical interference</li>
-      <li>Inefficent use of spectrum</li>
-      <hr />
-      <li>Orthogonal Frequency Division Multiplexing (OFDM)</li>
-      <li>Most common</li>
-      <li>Minimizes interference and has higher rates of data</li>
-      <hr />
-      <li>2.4GHz band</li>
-      <li>Prone to interference from microwaves, bluetooth</li>
-      <li>To avoid overlap, use channels 1, 6, and 11</li>
-      <hr />
-      <li>5GHz band</li>
-      <li>Less interference, higher speeds, shorter range</li>
-      <li>24 non-overlapping channels at 20MHz width</li>
-      <li>Channel bonding enables creation of wider channels</li>
-      <li>Combine adjacent channels for stronger signal</li>
-      <hr />
-      <li>6GHz band</li>
-      <li>Newer standard (WiFi 6e + 7)</li>
-      <li>Even less interference, higher speeds, shorter range</li>
-    </ul>
-  </div>
+    <div class="card">
+      <div class="subsection">Wireless Security</div>
+      <ul class="notes">
+        <hr />
+        <li>test note 1</li>
+      </ul>
+    </div>
 
-  <div class="card">
-    <div class="subsection">Wireless Standards</div>
-    <ul class="notes">
-      <hr />
-      <li>802.11a - 5GHz, 54Mbps, OFDM</li>
-      <li>802.11b - 2.4GHz, 11Mbps, DSSS</li>
-      <li>802.11g - 2.4GHz, 54Mbps, OFDM</li>
-      <li>802.11n - 2.4/5GHz, 600Mbps, MIMO, OFDM</li>
-      <li>802.11ac (WiFi 5) - 5GHz, 1Gbps+, MU-MIMO, OFDM</li>
-      <li>802.11ax (WiFi 6) - 2.4/5, 10Gbps+, OFDMA, MU-MIMO</li>
-      <li>802.11be (WiFi 7) - 2.4/5/6GHz, 30Gbps+</li>
-      <hr />
-      <li>MIMO (Multiple Input Multiple Output)</li>
-      <li>Multiple antennas for sending and receiving</li>
-      <li>Increases throughput and reliability</li>
-      <hr />
-      <li>MU-MIMO (Multi-User MIMO)</li>
-      <li>Supports multiple devices simultaneously</li>
-    </ul>
-  </div>
+    <div class="section">Section 14: Network Configuration</div>
+    <div class="card">
+      <div class="subsection">DHCP</div>
+      <ul class="notes">
+        <hr />
+        <li>Automates process of assigning IP addresses</li>
+        <li>Scope is list of available IPs within a subnet</li>
+        <li>Leases are temporary IP assignments</li>
+        <li>Discover Offer Request Acknowledge (DORA)</li>
+        <li>Static assignments made for specific devices</li>
+      </ul>
+    </div>
 
-  <div class="card">
-    <div class="subsection">Wireless Security</div>
-    <ul class="notes">
-      <hr />
-      <li>test note 1</li>
-    </ul>
-  </div>
+      <div class="card">
+      <div class="subsection">DNS</div>
+      <ul class="notes">
+        <hr />
+        <li>Translates names to IP addresses</li>
+        <li>Think phone contact list</li>
+        <li>Mostly handled by ISPs and public DNS servers</li>
+        <li>Hierarchical structure with root, TLD, second-level domains</li>
+        <li>Subdomains are subdivisions of domains</li>
+        <li>Recursive lookup</li>
+        <ul>
+          <li>Offloads all work to DNS resolver</li>
+          <li>Client requests IP from DNS resolver</li>
+          <li>Checks cache, root server, tld server, authoritative server</li>
+      </ul>
+      <li>Interative lookup</li>
+      <ul>
+        <li>More responsibility on client side resolver</li>
+        <li>Provides partial answers on how to find it</li>
+        <li>Refers to other DNS servers</li>
+        <li>Spreads the load</li>
+      </ul>
+      </ul>
+    </div>
 
-    <div class="section">Section 12: Wireless Garbage</div>
+    <div class="card">
+      <div class="subsection">DNS Records</div>
+      <ul class="notes">
+        <hr />
+        <li>Address record (@ sign)</li>
+        <ul>
+          <li>Link a domain name to an IPv4 address</li>
+        </ul>
+        <li>AAAA record</li>
+        <ul>
+          <li>Links to IPv6 address</li>
+        </ul>
+        <li>CNAME record</li>
+        <ul>
+          <li>Canonical name record</li>
+          <li>Aliases one domain name to another</li>
+          <li>Can only map to other domain names or subdomains</li>
+        </ul>
+        <li>MX record</li>
+        <ul>
+          <li>Mail exchange record</li>
+          <li>Specifies mail server for a domain</li>
+          <li>Can set priority</li>
+        </ul>
+        <li>TXT record</li>
+        <ul>
+          <li>Holds arbitrary text data for notes and comments</li>
+          <li>Can hold verification information</li>
+        </ul>
+      </ul>
+    </div>
+ 
+    <div class="card">
+      <div class="subsection">Spam Management with DNS</div>
+      <ul class="notes">
+        <hr />
+        <li>SPF (Sender Policy Framework)</li>
+        <li>Identities mail servers that are allowed to send emails for a domain</li>
+        <li>DKIM (DomainKeys Identified Mail)</li>
+        <li>Adds cryptographic signatures to verify email authenticity</li>
+        <li>Ensures emails have not been altered</li>
+        <li>DMARC (Domain-based Message Authentication, Reporting, Conformance)</li>
+        <li>Provide instructions for handling failed emails</li>
+        <li>User sends email with SPF and DKIM headers</li>
+        <li>Recipient server checks SPF, DKIM, and DMARC records</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">VLAN</div>
+      <ul class="notes">
+        <hr />
+        <li>Creates a logical separation of devices on a network</li>
+        <li>Improves security and reduces broadcast traffic </li>
+        <li>VLAN trunking allows multiple VLANs to share a single physical link</li>
+        <li>Native VLAN is the default VLAN for untagged traffic</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">VPN</div>
+      <ul class="notes">
+        <hr />
+        <li>Extends a private network over a public network</li>
+        <li>Site to site vpn</li>
+        <li>Connects entire networks together</li>
+        <li>Client to site vpn</li>
+        <li>Connects individual clients to a network</li>
+        <li>Clientless vpn</li>
+        <li>No hardware required, uses web browser</li>
+      </ul>
+    </div>
   </body>
 </html>
