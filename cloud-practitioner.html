@@ -131,7 +131,31 @@
       </ul>
     </div>
 
-
+    <div class="card">
+      <div class="subsection">Messaging and Queuing</div>
+      <ul class="notes">
+        <hr />
+        <li>Monolithic applications are tightly coupled</li>
+        <li>One component failing can cause failure of others</li>
+        <li>Microservices architecture are loosely coupled</li>
+        <li>One component failing does not impact whole system</li>
+        <li>Promotes flexibility and reliability</li>
+        <li>Ways to implement event-based and message-based systems</li>
+        <hr />
+        <li style="font-weight: bold;">EventBridge</li>
+        <li>Event based</li>
+        <li>Route events from applications and services to others</li>
+        <li>Order food -> payment process + notify restaurant</li>
+        <li style="font-weight: bold;">SQS</li>
+        <li>Message queuing service</li>
+        <li>Application places msg in queue</li>
+        <li>Something else retrieves, processes, and removes</li>
+        <li>Customer service ticket waiting to be assigned to who's available</li>
+        <li style="font-weight: bold;">SNS</li>
+        <li>Publish-subscribe service</li>
+        <li>Mass text/email/notifications to relevant people</li>
+      </ul>
+    </div>
 
 
 
