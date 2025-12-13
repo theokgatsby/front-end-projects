@@ -8,6 +8,227 @@
   </head>
   <body>
     <a href="index.html" id="back-button">←</a>
+    <div class="section">Section 9: Cloud Computing</div>
+
+    <div class="card">
+      <div class="subsection">Cloud Computing Basics</div>
+      <ul class="notes">
+        <hr />
+        <li>On-demand computing resources delivered over the internet</li>
+        <li>Pay-as-you-go model - Only pay for what you use</li>
+        <li>Eliminates need for physical servers and infrastructure management</li>
+        <li>Accessed via web browser or cloud provider API</li>
+        <li>Examples: AWS, Microsoft Azure, Google Cloud, Salesforce</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Cloud Characteristics</div>
+      <ul class="notes">
+        <hr />
+        <li>On-demand self-service - Access resources anytime without human interaction</li>
+        <li>Broad network access - Available over internet from any device</li>
+        <li>Resource pooling - Provider shares resources among multiple customers (multi-tenancy)</li>
+        <li>Rapid elasticity - Quickly scale up or down based on demand</li>
+        <li>Measured service - Pay only for resources consumed; usage is metered and monitored</li>
+        <li>Redundancy - Built-in backup and disaster recovery capabilities</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Cloud Deployment Models</div>
+      <ul class="notes">
+        <hr />
+        <li>Public Cloud - Open to public; resources managed by provider (AWS, Azure, Google Cloud)</li>
+        <li>Private Cloud - Dedicated to single organization; more control, more expensive</li>
+        <li>Hybrid Cloud - Mix of public and private; flexibility for sensitive + non-sensitive workloads</li>
+        <li>Community Cloud - Shared by specific organizations with common interests</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Cloud Service Models</div>
+      <ul class="notes">
+        <hr />
+        <li>IaaS (Infrastructure as a Service) - Virtualized computing over internet (VM, storage, networking)</li>
+        <li>Examples: AWS EC2, Azure VMs, Google Compute Engine</li>
+        <li>User manages: Applications, data, runtime, OS | Provider manages: Hardware, networking</li>
+        <hr />
+        <li>PaaS (Platform as a Service) - Development platform in the cloud</li>
+        <li>Examples: AWS Elastic Beanstalk, Azure App Service, Heroku</li>
+        <li>User manages: Applications, data | Provider manages: Everything else</li>
+        <hr />
+        <li>SaaS (Software as a Service) - Applications delivered via web (ready to use)</li>
+        <li>Examples: Microsoft 365, Google Workspace, Salesforce, Slack</li>
+        <li>Provider manages: Everything | User manages: Nothing (just uses it)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Virtual Desktop Infrastructure (VDI)</div>
+      <ul class="notes">
+        <hr />
+        <li>Desktop operating system and applications hosted centrally on servers</li>
+        <li>Users access desktop via thin client device or web browser</li>
+        <li>Benefits: Centralized management, security, reduced client complexity, BYOD support</li>
+        <li>Thin clients - Minimal hardware; most processing done on server</li>
+        <li>Fat clients - More processing power; some work done locally</li>
+        <li>Scalability - Easily add/remove users without deploying new hardware</li>
+        <li>Security advantage - All data stays on server; nothing stored on client device</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Cloud Storage Services</div>
+      <ul class="notes">
+        <hr />
+        <li>Cloud backup - Automated data backup to cloud storage; disaster recovery</li>
+        <li>Examples: AWS Backup, Azure Backup, Carbonite</li>
+        <li>Cloud sync services - Synchronize files across devices (OneDrive, Google Drive, Dropbox)</li>
+        <li>Cloud file sharing - Share files securely with others; versioning and access control</li>
+        <li>Accessibility - Access files from anywhere with internet connection</li>
+        <li>Cost-effective - No need to buy/maintain physical storage infrastructure</li>
+        <li>Scalability - Easily increase storage capacity as needed</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Using the Cloud</div>
+      <ul class="notes">
+        <hr />
+        <li>SaaS examples: Email (Microsoft 365), productivity (Google Workspace), CRM (Salesforce)</li>
+        <li>IaaS examples: Web applications, APIs, database services, development environments</li>
+        <li>PaaS examples: Web/mobile app development, data analytics platforms</li>
+        <li>Subscription management - Monitor usage and costs; manage licenses and users</li>
+        <li>Security considerations: Data encryption, identity management, compliance requirements</li>
+        <li>Bandwidth requirements - Reliable internet connection needed; latency affects performance</li>
+        <li>Vendor lock-in - Difficult to switch providers; plan data migration strategy</li>
+      </ul>
+    </div>
+
+    <div class="section">Section 10: Networking Basics</div>
+
+    <div class="card">
+      <div class="subsection">Networking Hardware</div>
+      <ul class="notes">
+        <hr />
+        <li>Switch - Forwards frames based on MAC addresses (Layer 2); connects devices on LAN</li>
+        <li>Router - Forwards packets based on IP addresses (Layer 3); connects networks</li>
+        <li>Hub - Legacy device; broadcasts to all ports (no intelligence)</li>
+        <li>Bridge - Connects and filters traffic between network segments (Layer 2)</li>
+        <li>Modem - Modulates/demodulates signal; converts ISP signal to usable data</li>
+        <li>Repeater - Amplifies signal to extend range (Layer 1)</li>
+        <li>Access Point (AP) - Wireless transmitter; extends network wirelessly</li>
+        <li>Network Interface Card (NIC) - Hardware that connects device to network</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Network Types</div>
+      <ul class="notes">
+        <hr />
+        <li>LAN (Local Area Network) - Small area, high speed, single organization</li>
+        <li>WAN (Wide Area Network) - Large geographic area, lower speeds, connects LANs</li>
+        <li>PAN (Personal Area Network) - Very small area (Bluetooth, personal devices)</li>
+        <li>MAN (Metropolitan Area Network) - City-sized, larger than LAN, smaller than WAN</li>
+        <li>WLAN (Wireless LAN) - Wireless version of LAN, uses WiFi/802.11</li>
+        <li>CAN (Campus Area Network) - Networks across buildings/campus</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Internet of Things (IoT)</div>
+      <ul class="notes">
+        <hr />
+        <li>Network of physical devices connected to internet, collecting/sharing data</li>
+        <li>Examples: Smart home devices, wearables, industrial sensors, smart thermostats</li>
+        <li>Low bandwidth requirements, often battery-powered</li>
+        <li>Security concerns: Default credentials, lack of updates, vulnerable protocols</li>
+        <li>Common protocols: WiFi, Bluetooth, Zigbee, Z-Wave, LoRaWAN</li>
+        <li>Often requires dedicated networks/subnets for security isolation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Twisted Pair Cables</div>
+      <ul class="notes">
+        <hr />
+        <li>Two insulated wires twisted together; twisting reduces electromagnetic interference (EMI)</li>
+        <li>UTP (Unshielded Twisted Pair) - No shield, cheaper, susceptible to interference</li>
+        <li>STP (Shielded Twisted Pair) - Metal foil/braid shield around pairs, more expensive</li>
+        <li>UTP most common for LANs (Ethernet); STP used in industrial/high-interference areas</li>
+        <li>Contains 4 pairs (8 wires total); each pair has specific twist rate</li>
+        <li>Copper wire conducts electrical signals; plastic insulation prevents signal loss</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">T568A and T568B Standards</div>
+      <ul class="notes">
+        <hr />
+        <li>Wiring standards for RJ45 connectors on Ethernet cables</li>
+        <li>T568A: White-Green, Green, White-Orange, Blue, White-Blue, Orange, White-Brown, Brown</li>
+        <li>T568B: White-Orange, Orange, White-Green, Blue, White-Blue, Green, White-Brown, Brown</li>
+        <li>Straight-through cable - Both ends same standard (most common); host to switch</li>
+        <li>Crossover cable - One end T568A, other T568B (rare); switch to switch, host to host</li>
+        <li>Consistency matters more than which standard chosen (follow one throughout)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Optical Cabling</div>
+      <ul class="notes">
+        <hr />
+        <li>Uses light pulses transmitted through glass/plastic fiber; immune to EMI</li>
+        <li>Single-Mode Fiber (SMF) - Single light path, long distance, expensive; used for WAN</li>
+        <li>Multi-Mode Fiber (MMF) - Multiple light paths, shorter distance, cheaper; used for LAN</li>
+        <li>Advantages: High bandwidth, long distance, no EMI, no crosstalk, secure (light stays inside)</li>
+        <li>Disadvantages: Expensive, fragile, requires specialized equipment for installation/repair</li>
+        <li>LC and SC connectors most common; connectors must match fiber type</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Coaxial Cabling</div>
+      <ul class="notes">
+        <hr />
+        <li>Center conductor, insulation, braided shield, outer jacket; resists EMI better than UTP</li>
+        <li>RG-6 - Modern standard, used for cable TV, internet (75 ohms)</li>
+        <li>RG-59 - Older standard, legacy systems (75 ohms)</li>
+        <li>RG-58 - Thin coaxial, legacy networking (50 ohms)</li>
+        <li>Connectors: BNC (legacy), F-type (cable TV), RCA</li>
+        <li>Limited bandwidth compared to twisted pair; mostly replaced by modern cables</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Networking Tools</div>
+      <ul class="notes">
+        <hr />
+        <li>Cable Stripper - Removes outer jacket from cables</li>
+        <li>Crimper - Attaches RJ45 connectors to cable ends</li>
+        <li>Punch-down Tool - Connects wires to punchdown blocks in wall jacks/patch panels</li>
+        <li>Cable Tester - Verifies cable continuity and pin order</li>
+        <li>Multimeter - Tests voltage, continuity, resistance</li>
+        <li>Tone Generator/Probe - Traces cables through walls (tone generator and probe pair)</li>
+        <li>Network Analyzer/Certifier - Advanced testing (length, attenuation, crosstalk)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Building & Testing Networks</div>
+      <ul class="notes">
+        <hr />
+        <li>Building cable: Strip jacket → separate pairs → arrange per 568A/B → insert in RJ45 → crimp</li>
+        <li>Proper technique prevents signal degradation: Don't untwist more than 0.5 inches</li>
+        <li>Testing cable: Use cable tester to verify all 8 pins connected correctly</li>
+        <li>Common cable issues: Crossed pairs, reversed polarity, open circuit, short circuit</li>
+        <li>Network wiring: Run cables through conduit/raceway; avoid near power lines (EMI)</li>
+        <li>Max distance for Twisted Pair: 100 meters (328 feet); SMF: 40+ km</li>
+        <li>Proper documentation: Label all cables and ports; maintain cable maps</li>
+      </ul>
+    </div>
+
     <div class="section">Section 11: Wireless Networks</div>
     <div class="card">
       <div class="subsection">Wireless Frequencies</div>
@@ -167,23 +388,13 @@
     </div>
 
     <div class="section">Section 15: Network Servers and Services</div>
-      <div class="card">
-      <div class="subsection">Network Servers and Services Overview</div>
-      <ul class="notes">
-      <hr />
-      <li>Server roles: Dedicated vs. multi-purpose servers</li>
-      <li>Client-server model: Clients request, servers respond</li>
-      <li>Common ports to memorize: HTTP (80), HTTPS (443), FTP (21), SSH (22), RDP (3389)</li>
-      <li>Network services: DHCP (assigns IP addresses), DNS (resolves domain names)</li>
-      </ul>
-    </div>
-
     <div class="card">
       <div class="subsection">File and Print Servers</div>
       <ul class="notes">
       <hr />
       <li>File servers provide centralized storage for network users</li>
       <li>SMB/CIFS protocol used for Windows file sharing</li>
+      <li>Port 445 (SMB/CIFS)</li>
       <li>NFS (Network File System) used for Linux/Unix file sharing</li>
       <li>Print servers centralize print management and reduce client-side processing</li>
       <li>Permissions: Share-level vs. NTFS permissions (most restrictive wins)</li>
@@ -386,6 +597,85 @@
       <li>Isolate from internet and modern network when possible</li>
       <li>Document legacy systems and create transition plans</li>
       <li>Consider virtualization to preserve functionality while improving security</li>
+      </ul>
+    </div>
+
+    <div class="section">Section 16: Laptops and Mobile Devices</div>
+
+    <div class="card">
+      <div class="subsection">Display Types</div>
+      <ul class="notes">
+        <hr />
+        <li>LCD (Liquid Crystal Display) - Most common, uses backlight, lower power than older tech</li>
+        <li>LED (Light Emitting Diode) - Type of LCD with LED backlight; brighter and more efficient</li>
+        <li>OLED (Organic LED) - Self-emitting pixels, better contrast, thinner, more expensive</li>
+        <li>IPS (In-Plane Switching) - Better viewing angles than TN, more accurate colors</li>
+        <li>TN (Twisted Nematic) - Cheaper, faster response time, poor viewing angles</li>
+        <li>VA (Vertical Alignment) - Good contrast, response time between IPS and TN</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Display Attributes</div>
+      <ul class="notes">
+        <hr />
+        <li>Resolution - Pixels per inch (PPI); higher = sharper image</li>
+        <li>Brightness - Measured in nits; higher brightness for outdoor visibility</li>
+        <li>Contrast ratio - Difference between black and white; higher = better image quality</li>
+        <li>Color depth - Number of colors displayable (8-bit, 10-bit,...)</li>
+        <li>Refresh rate - Hz frequency (60Hz, 144Hz); higher for gaming/smooth motion</li>
+        <li>Panel size - Diagonal measurement (13", 15", 17" common for laptops)</li>
+        <li>Aspect ratio - Width to height (16:9, 16:10, 4:3)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Mobile Device Components</div>
+      <ul class="notes">
+        <hr />
+        <li>Digitizer - Converts tactile input into digital signals</li>
+        <li>Accelerometer - Detects device orientation and movement</li>
+        <li>Gyroscope - Measures angular velocity and rotation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Mobile Device Wireless Connectivity</div>
+      <ul class="notes">
+        <hr />
+        <li>WiFi - 802.11a/b/g/n/ac/ax; connects to local networks and internet</li>
+        <li>Bluetooth - 2.4GHz; short-range wireless for peripherals (headphones, keyboards)</li>
+        <li>NFC (Near Field Communication) - Very short range (a few cm); contactless payments</li>
+        <li>Cellular (3G/4G/5G) - Mobile network connectivity; varies by provider</li>
+        <li>GPS - Global Positioning System for location services and navigation</li>
+        <li>Airplane mode - Disables all wireless transmission for flight compliance</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Mobile Device Wired Connectivity</div>
+      <ul class="notes">
+        <hr />
+        <li>USB-C - Modern standard; supports charging, data transfer, video output</li>
+        <li>Lightning - Apple proprietary connector; used on iPhones and iPads</li>
+        <li>Micro-USB - Older standard; still common on some Android devices</li>
+        <li>3.5mm headphone jack - Legacy audio input; declining in modern devices</li>
+        <li>USB On-the-Go (OTG) - Allows mobile devices to act as host for USB peripherals</li>
+        <li>HDMI - Video output; usually via adapter for mobile devices</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Port Replicators & Docking Stations</div>
+      <ul class="notes">
+        <hr />
+        <li>Port replicator - Extends ports without additional power; portable</li>
+        <li>Docking station - More comprehensive; includes power, video, audio, USB hubs</li>
+        <li>Benefits: Single connection to peripherals; keyboard, mouse, monitor, etc.</li>
+        <li>Types: USB-C docks, proprietary docks, universal docks</li>
+        <li>Video output - HDMI, DisplayPort, or VGA via dock to external monitors</li>
+        <li>Power delivery - Charges laptop while docked</li>
+        <li>Common for office setups - Transform portable device into desktop workstation</li>
       </ul>
     </div>
 
