@@ -59,14 +59,6 @@
       </ul>
     </div>
 
-    <div class="card">
-      <div class="subsection">Wireless Security</div>
-      <ul class="notes">
-        <hr />
-        <li>test note 1</li>
-      </ul>
-    </div>
-
     <div class="section">Section 14: Network Configuration</div>
     <div class="card">
       <div class="subsection">DHCP</div>
@@ -175,7 +167,74 @@
         <li>Connects individual clients to a network</li>
         <li>Clientless vpn</li>
         <li>No hardware required, uses web browser</li>
+        <li>Full tunnel</li>
+        <li>All traffic goes through the vpn</li>
+        <li>Split tunnel</li>
+        <li>Only some traffic goes through the vpn</li>
       </ul>
     </div>
+
+    <div class="section">Section 15: Network Servers and Services</div>
+    <div class="card">
+      <div class="subsection">Web Servers</div>
+      <ul class="notes">
+        <hr />
+        <li>Provides access to websites via HTTP or HTTPS</li>
+        <li>POrt 80 and port 443</li>
+        <li>Hosting via Apache and NGINX</li>
+        <li>Uses HTML, CSS, and JS</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="subsection">Email Servers</div>
+      <ul class="notes">
+        <hr />
+        <li>SMTP server</li>
+        <li>Responsible for sending mail</li>
+        <li>Port 25</li>
+        <li>POP3 (Post Office Protocol)</li>
+        <li>Port 110</li>
+        <li>Emails are deleted from server as they're recieved</li>
+        <li>IMAP (Internet Message Access Protocol)</li>
+        <li>Keeps your mail on the server</li>
+        <li>Able to manage your mail from any device</li>
+        <li>Port 143</li>
+        <li>Microsoft Exchange</li>
+        <li>Handles all 3 types and ports</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">AAA Servers</div>
+      <ul class="notes">
+        <hr />
+        <li>Authentication Authorization Accounting Servers</li>
+        <li>Centralized way of managing network security and access</li>
+        <li>Authentication focuses on verifying indentities of users</li>
+        <li>Increase security using MFA and digital certificates</li>
+        <li>Authorization defines permissions for an authenticated user</li>
+        <li>Tracks and logs all user's activity</li>
+        <li>Remote Auth Dial-in User Service (RADIUS)</li>
+        <li>Combines authen + author into single process over UDP</li>
+        <li>Terminal Access Controller Access-Control System (TACACS+)</li>
+        <li>Seperates all three steps for more flexibilty over TCP</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="subsection">Database Servers</div>
+      <ul class="notes">
+        <hr />
+        <li>System designed to store, organize, and retrieve data</li>
+        <li>Relational - SQL</li>
+        <li>Ideal for inventory management and customer records</li>
+        <li>NoSQL - Mango</li>
+        <li>Unstructured or semi-structured data</li>
+        <li>Best for real-time analytics and social media platforms</li>
+        <li>In-memory - Memcache</li>
+        <li>Store data in RAM for best performance</li>
+      </ul>
+    </div>
+
   </body>
 </html>
