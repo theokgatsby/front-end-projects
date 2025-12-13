@@ -930,7 +930,6 @@
         async function loadAllData() {
             playersData = [];
 
-            // Since items are now hardcoded, just load them directly
             playersData = PLAYERS.map(player => ({
                 username: player.username,
                 sheetUrl: player.sheetUrl,
@@ -996,11 +995,16 @@
 
             const allItems = new Set();
             playersData.forEach(p => p.items.forEach(item => allItems.add(item)));
+            const sharedItemCounts = {};
 
-            const sharedItems = player.items.filter(item => {
-                return playersData.some(p => 
+            player.items.forEach(item => {
+                const matches = playersData.filter(p =>
                     p.username !== player.username && p.items.includes(item)
-                );
+                ).length;
+
+                if (matches > 0) {
+                    sharedItemCounts[item] = matches;
+                }
             });
 
             const content = document.getElementById('detail-content');
@@ -1010,29 +1014,20 @@
                 <div class="score-card">
                     <h3>Overlap Score</h3>
                     <h2>${player.overlapScore}</h2>
-                    <p>${sharedItems.length} out of ${player.items.length} items shared with others</p>
                 </div>
 
                 <h3>Your Bingo Board</h3>
                 <div class="bingo-grid">
-                    ${player.items.map(item => `
-                        <div class="bingo-cell ${sharedItems.includes(item) ? 'shared' : ''}">
-                            ${item}
-                        </div>
-                    `).join('')}
+                    ${player.items.map(item => {
+                        const count = sharedItemCounts[item] || 0;
+                        return `
+                            <div class="bingo-cell ${count > 0 ? 'shared' : ''}">
+                                ${item}${count > 0 ? ` (${count})` : ''}
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
 
-                ${Object.keys(player.overlaps).length > 0 ? `
-                    <h3>Overlap with Other Players</h3>
-                    <div class="overlap-list">
-                        ${Object.entries(player.overlaps).map(([name, count]) => `
-                            <div class="overlap-item">
-                                <span><strong>${name}</strong></span>
-                                <span>${count} shared items</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : '<p>No overlaps with other players yet.</p>'}
             `;
 
             showPage('detail');
