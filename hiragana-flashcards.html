@@ -259,10 +259,10 @@
       const statsDiv = document.getElementById("stats");
       if (!currentCard) { statsDiv.style.display = "none"; return; }
       statsDiv.style.display = "block";
-      statsDiv.innerHTML = `<strong>${currentCard.char}</strong><br>
-        Didn’t get: ${currentCard.didntGet}<br>
+      statsDiv.innerHTML = `<strong>Stats for: ${currentCard.char}</strong><br>
+        Didn't get: ${currentCard.didntGet}<br>
         Got it: ${currentCard.gotIt}<br>
-        Don’t need: ${currentCard.dontNeed}<br>
+        Don't need: ${currentCard.dontNeed}<br>
         Weight: ${currentCard.weight.toFixed(1)}`;
     }
 
@@ -280,9 +280,20 @@
     function closeSettings() { document.getElementById("settingsOverlay").style.display = "none"; }
     function restoreAll() { cards.forEach(c => { c.active = true; c.weight = Math.max(1, c.weight); }); saveCards(); showNextCard(); }
     function clearStats() {
-      if (!confirm("Clear all stats and reset progress?")) return;
-      cards = DEFAULT_CARDS.map(c => ({ ...c, didntGet: 0, gotIt: 0, dontNeed: 0, weight: 1, active: true }));
-      saveCards(); showNextCard(); closeSettings();
+      localStorage.removeItem(STORAGE_KEY);
+
+      cards = DEFAULT_CARDS.map(c => ({
+        ...c,
+        didntGet: 0,
+        gotIt: 0,
+        dontNeed: 0,
+        weight: 1,
+        active: true
+      }));
+
+      saveCards();
+      showNextCard();
+      closeSettings();
     }
 
     showNextCard();
