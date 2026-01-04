@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hiragana Flashcards</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f6f7fb;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .app {
+      background: white;
+      width: 480px;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card {
+      font-size: 10rem;
+      text-align: center;
+      width: 50%;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .hint {
+      font-size: 1.5rem;
+      width: 50%;
+      background: white;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .bad {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    .ok {
+      background: #ffd166;
+    }
+
+    .done {
+      background: #06d6a0;
+      color: white;
+    }
+
+    .stats {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      background: #fafafa;
+      padding: 0.75rem;
+      border-radius: 8px;
+    }
+
+    .settings-btn {
+      position: absolute;
+      padding: 0;
+      top: 12px;
+      right: 12px;
+      background: #eee;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .settings-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .settings {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 300px;
+    }
+
+    .settings h2 {
+      margin-top: 0;
+    }
+
+    .settings button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <button class="settings-btn" onclick="openSettings()">⚙️</button>
+    <h1>Hiragana Study</h1>
+
+    <div class="card-container">
+      <div class="card" id="char" onclick="flipCard()">あ</div>
+      <div class="hint" id="hint"></div>
+    </div>
+
+    <div class="buttons" id="answerButtons">
+      <button class="bad" onclick="answer('bad')">Missed</button>
+      <button class="ok" onclick="answer('ok')">Got it</button>
+      <button class="done" onclick="answer('done')">Mastered</button>
+    </div>
+
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <!-- Settings popup -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings">
+      <h2>Settings</h2>
+      <button onclick="restoreAll()">Restore all cards</button>
+      <button onclick="clearStats()">Clear Stats & Reset Progress</button>
+      <button onclick="closeSettings()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "hiragana_flashcards_v1";
+
+    const DEFAULT_CARDS = [
+      { char: "あ", romaji: "a", hint: "An apple with a tail hanging down." },
+      { char: "い", romaji: "i", hint: "Two slender eels making an 'ee' sound as they swim side-by-side." },
+      { char: "う", romaji: "u", hint: "A person bent over, forming a U shape." },
+      { char: "え", romaji: "e", hint: "A capital E that has unfortunately fallen over." },
+      { char: "お", romaji: "o", hint: "A surprised face making an 'O' shape with its mouth wide open." },
+      { char: "か", romaji: "ka", hint: "Looks like a car, with a roof and side." },
+      { char: "き", romaji: "ki", hint: "A key with jagged teeth." },
+      { char: "く", romaji: "ku", hint: "The curved beak of a cooing bird." },
+      { char: "け", romaji: "ke", hint: "Someone forcefully kicking their leg out." },
+      { char: "こ", romaji: "ko", hint: "An open parenthesis or comma shape." },
+      { char: "さ", romaji: "sa", hint: "A sad face with a single tear." },
+      { char: "し", romaji: "shi", hint: "A ship with a sail." },
+      { char: "す", romaji: "su", hint: "A graceful swan with a curved neck." },
+      { char: "せ", romaji: "se", hint: "The sun setting below the horizon." },
+      { char: "そ", romaji: "so", hint: "A curved sewing needle with trailing thread." },
+      { char: "た", romaji: "ta", hint: "A necktie hanging neatly." },
+      { char: "ち", romaji: "chi", hint: "The curled tail of a speedy cheetah." },
+      { char: "つ", romaji: "tsu", hint: "A powerful tsunami wave curling over." },
+      { char: "て", romaji: "te", hint: "A hand reaching out to grab something." },
+      { char: "と", romaji: "to", hint: "A cartoon toe running quickly." },
+      { char: "な", romaji: "na", hint: "A piece of naan bread with a bulge or tail." },
+      { char: "に", romaji: "ni", hint: "Two knees positioned right next to each other." },
+      { char: "ぬ", romaji: "nu", hint: "A slippery noodle sliding down." },
+      { char: "ね", romaji: "ne", hint: "A fishing net with crisscrossing lines." },
+      { char: "の", romaji: "no", hint: "A simple flowing shape that looks like 'no'." },
+      { char: "は", romaji: "ha", hint: "A wide-brimmed hat sitting upright." },
+      { char: "ひ", romaji: "hi", hint: "The smiling face of a happy hippo." },
+      { char: "ふ", romaji: "fu", hint: "Mount Fuji with its snow-capped peak." },
+      { char: "へ", romaji: "he", hint: "A downward stroke like waving 'hey!'." },
+      { char: "ほ", romaji: "ho", hint: "A deep hole in the ground." },
+      { char: "ま", romaji: "ma", hint: "A mask with openings for eyes." },
+      { char: "み", romaji: "mi", hint: "Looks like the Roman numeral III." },
+      { char: "む", romaji: "mu", hint: "The face of a mooing cow." },
+      { char: "め", romaji: "me", hint: "Resembles the handwritten word 'me'." },
+      { char: "も", romaji: "mo", hint: "A mop leaning against a wall." },
+      { char: "や", romaji: "ya", hint: "Someone raising their arms yelling 'Ya!'." },
+      { char: "ゆ", romaji: "yu", hint: "A U-shaped yule log." },
+      { char: "よ", romaji: "yo", hint: "A spinning yo-yo." },
+      { char: "ら", romaji: "ra", hint: "The floppy ear of a rabbit." },
+      { char: "り", romaji: "ri", hint: "A slender reed swaying in the wind." },
+      { char: "る", romaji: "ru", hint: "A simple loop of rope." },
+      { char: "れ", romaji: "re", hint: "A flowing red ribbon." },
+      { char: "ろ", romaji: "ro", hint: "A curving road stretching ahead." },
+      { char: "わ", romaji: "wa", hint: "A magical wand." },
+      { char: "を", romaji: "wo", hint: "A squiggly worm." },
+      { char: "ん", romaji: "n", hint: "The end of a curly noodle." }
+    ];
+
+    let cards = loadCards();
+    let currentCard = null;
+    let showingAnswer = false;
+
+    function loadCards() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+      return DEFAULT_CARDS.map(c => ({ ...c, didntGet: 0, gotIt: 0, dontNeed: 0, weight: 1, active: true }));
+    }
+    function saveCards() { localStorage.setItem(STORAGE_KEY, JSON.stringify(cards)); }
+
+    function weightedRandomCard() {
+      const pool = cards.filter(c => c.active);
+      if (!pool.length) return null;
+      let total = pool.reduce((s, c) => s + c.weight, 0);
+      let r = Math.random() * total;
+      for (const c of pool) { if ((r -= c.weight) <= 0) return c; }
+    }
+
+    function showCardFront() {
+      showingAnswer = false;
+      document.getElementById("char").textContent = currentCard.char;
+      document.getElementById("hint").textContent = "";
+      updateStats();
+    }
+
+    function flipCard() {
+      if (!currentCard || showingAnswer) return;
+      showingAnswer = true;
+      document.getElementById("hint").textContent = `${currentCard.romaji} — ${currentCard.hint}`;
+    }
+
+    function showNextCard() {
+      currentCard = weightedRandomCard();
+      if (!currentCard) {
+        document.getElementById("char").textContent = "🎉";
+        document.getElementById("hint").textContent = "";
+        document.getElementById("stats").textContent = "All cards completed!";
+        return;
+      }
+      showCardFront();
+    }
+
+    function updateStats() {
+      const statsDiv = document.getElementById("stats");
+      if (!currentCard) { statsDiv.style.display = "none"; return; }
+      statsDiv.style.display = "block";
+      statsDiv.innerHTML = `<strong>${currentCard.char}</strong><br>
+        Didn’t get: ${currentCard.didntGet}<br>
+        Got it: ${currentCard.gotIt}<br>
+        Don’t need: ${currentCard.dontNeed}<br>
+        Weight: ${currentCard.weight.toFixed(1)}`;
+    }
+
+    function answer(type) {
+      if (!currentCard) return;
+      if (type === "bad") { currentCard.didntGet++; currentCard.weight += 2; }
+      else if (type === "ok") { currentCard.gotIt++; currentCard.weight = Math.max(1, currentCard.weight - 0.5); }
+      else if (type === "done") { currentCard.dontNeed++; currentCard.active = false; }
+      saveCards();
+      showNextCard();
+    }
+
+    /* Settings */
+    function openSettings() { document.getElementById("settingsOverlay").style.display = "flex"; }
+    function closeSettings() { document.getElementById("settingsOverlay").style.display = "none"; }
+    function restoreAll() { cards.forEach(c => { c.active = true; c.weight = Math.max(1, c.weight); }); saveCards(); showNextCard(); }
+    function clearStats() {
+      if (!confirm("Clear all stats and reset progress?")) return;
+      cards = DEFAULT_CARDS.map(c => ({ ...c, didntGet: 0, gotIt: 0, dontNeed: 0, weight: 1, active: true }));
+      saveCards(); showNextCard(); closeSettings();
+    }
+
+    showNextCard();
+  </script>
+</body>
+
+</html>
