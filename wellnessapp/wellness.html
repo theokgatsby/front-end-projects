@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Fitness Tracker</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #020617;
+      --accent: #38bdf8;
+      --border: #1e293b;
+      --text: #e5e7eb;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: var(--accent);
+      color: #020617;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button.secondary {
+      background: #1e293b;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .day {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 10px;
+      min-height: 70px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .day.today {
+      outline: 2px solid var(--accent);
+    }
+
+    .day.selected {
+      background: #082f49;
+    }
+
+    .day.has-data {
+      background: linear-gradient(135deg, #082f49 0%, #0c4a6e 100%);
+      border-color: #0e7490;
+    }
+
+    .day span {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .form {
+      margin-top: 20px;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      background: #020617;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .tab {
+      padding: 12px 48px;
+      cursor: pointer;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.2s;
+      min-width: 140px;
+    }
+
+    .tab:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: #020617;
+      border-color: var(--accent);
+    }
+
+    .tab-content {
+      margin-top: 20px;
+    }
+
+    .chart-container {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .meals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .meal-card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .meal-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .meal-card h3 {
+      margin: 0 0 8px 0;
+      color: var(--accent);
+    }
+
+    .meal-card p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .meal-details {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meal-details h4 {
+      margin: 12px 0 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .meal-details ul,
+    .meal-details ol {
+      margin: 4px 0;
+      padding-left: 20px;
+    }
+
+    .meal-details li {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Daily Fitness Tracker</h1>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('calendar')">Calendar</button>
+      <button class="tab" onclick="switchTab('graph')">Graph</button>
+      <button class="tab" onclick="switchTab('meals')">Meals</button>
+    </div>
+
+    <div class="tab-content" id="calendarTab">
+      <div class="controls">
+        <div id="monthLabel"></div>
+        <div>
+          <button class="secondary" onclick="changeMonth(-1)">◀</button>
+          <button class="secondary" onclick="goToday()">Today</button>
+          <button class="secondary" onclick="changeMonth(1)">▶</button>
+        </div>
+      </div>
+
+      <div class="calendar" id="calendar"></div>
+
+      <div class="form hidden" id="entryForm">
+        <h2 id="selectedDate"></h2>
+
+        <label>Body Weight</label>
+        <input type="number" id="weight">
+
+        <label>Calories</label>
+        <input type="number" id="calories">
+
+        <label>Cardio Minutes</label>
+        <input type="number" id="steps">
+
+        <label>Max Pushups</label>
+        <input type="number" id="reps">
+
+        <label>General Notes</label>
+        <textarea id="notes"></textarea>
+      </div>
+    </div>
+
+    <div class="tab-content hidden" id="graphTab"></div>
+
+    <div class="tab-content hidden" id="mealsTab"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script>
+    const calendarEl = document.getElementById("calendar");
+    const monthLabel = document.getElementById("monthLabel");
+    const form = document.getElementById("entryForm");
+
+    let current = new Date();
+    let selectedDateKey = null;
+    let activeTab = 'calendar';
+
+    function dateKey(d) {
+      return d.toISOString().split("T")[0];
+    }
+
+    function loadDay(key) {
+      return JSON.parse(localStorage.getItem("day-" + key)) || {};
+    }
+
+    function saveDay(key, data) {
+      localStorage.setItem("day-" + key, JSON.stringify(data));
+    }
+
+    function hasData(data) {
+      return data.weight || data.calories || data.steps || data.reps || data.notes;
+    }
+
+    function renderCalendar() {
+      calendarEl.innerHTML = "";
+      const year = current.getFullYear();
+      const month = current.getMonth();
+      monthLabel.textContent = current.toLocaleString("default", { month: "long", year: "numeric" });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        calendarEl.appendChild(document.createElement("div"));
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(year, month, d);
+        const key = dateKey(date);
+        const data = loadDay(key);
+        const div = document.createElement("div");
+        div.className = "day";
+        div.innerHTML = `<span>${d}</span>`;
+
+        if (key === dateKey(new Date())) div.classList.add("today");
+        if (key === selectedDateKey) div.classList.add("selected");
+        if (hasData(data)) div.classList.add("has-data");
+
+        div.onclick = () => selectDay(date);
+        calendarEl.appendChild(div);
+      }
+    }
+
+    function selectDay(date) {
+      selectedDateKey = dateKey(date);
+      renderCalendar();
+      form.classList.remove("hidden");
+
+      document.getElementById("selectedDate").textContent = date.toDateString();
+
+      const data = loadDay(selectedDateKey);
+
+      weight.value = data.weight || "";
+      calories.value = data.calories || "";
+      steps.value = data.steps || "";
+      reps.value = data.reps || "";
+      notes.value = data.notes || "";
+    }
+
+    ["weight", "calories", "steps", "reps", "notes"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        if (!selectedDateKey) return;
+        saveDay(selectedDateKey, {
+          weight: weight.value,
+          calories: calories.value,
+          steps: steps.value,
+          reps: reps.value,
+          notes: notes.value
+        });
+        renderCalendar();
+      });
+    });
+
+    function changeMonth(dir) {
+      current.setMonth(current.getMonth() + dir);
+      renderCalendar();
+    }
+
+    function goToday() {
+      current = new Date();
+      selectDay(current);
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+
+      document.getElementById('calendarTab').classList.add('hidden');
+      document.getElementById('graphTab').classList.add('hidden');
+      document.getElementById('mealsTab').classList.add('hidden');
+
+      if (tab === 'calendar') {
+        document.getElementById('calendarTab').classList.remove('hidden');
+      } else if (tab === 'graph') {
+        document.getElementById('graphTab').classList.remove('hidden');
+        renderGraphs();
+      } else if (tab === 'meals') {
+        document.getElementById('mealsTab').classList.remove('hidden');
+        renderMeals();
+      }
+    }
+
+    function getAllData() {
+      const data = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('day-')) {
+          const dateStr = key.replace('day-', '');
+          const dayData = JSON.parse(localStorage.getItem(key));
+          if (hasData(dayData)) {
+            data.push({ date: dateStr, ...dayData });
+          }
+        }
+      }
+      return data.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    function renderGraphs() {
+      const graphTab = document.getElementById('graphTab');
+      graphTab.innerHTML = `
+        <div class="chart-container"><canvas id="weightChart"></canvas></div>
+        <div class="chart-container"><canvas id="caloriesChart"></canvas></div>
+        <div class="chart-container"><canvas id="cardioChart"></canvas></div>
+        <div class="chart-container"><canvas id="pushupsChart"></canvas></div>
+      `;
+
+      const allData = getAllData();
+      if (allData.length === 0) {
+        graphTab.innerHTML = '<p style="text-align: center; opacity: 0.6;">No data to display yet. Start tracking!</p>';
+        return;
+      }
+
+      const labels = [];
+      const weightData = [];
+      const caloriesData = [];
+      const cardioData = [];
+      const pushupsData = [];
+
+      let lastWeight = null;
+      let lastCalories = null;
+      let lastCardio = null;
+      let lastPushups = null;
+
+      allData.forEach(d => {
+        labels.push(new Date(d.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+
+        lastWeight = d.weight || lastWeight;
+        lastCalories = d.calories || lastCalories;
+        lastCardio = d.steps || lastCardio;
+        lastPushups = d.reps || lastPushups;
+
+        weightData.push(lastWeight || null);
+        caloriesData.push(lastCalories || null);
+        cardioData.push(lastCardio || null);
+        pushupsData.push(lastPushups || null);
+      });
+
+      const chartConfig = (label, data, color) => ({
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label,
+            data,
+            borderColor: color,
+            backgroundColor: color + '20',
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: '#e5e7eb' } }
+          },
+          scales: {
+            x: { ticks: { color: '#9ca3af' }, grid: { color: '#1e293b' } },
+            y: { ticks: { color: '#9ca3af' }, grid: { color: '#1e293b' } }
+          }
+        }
+      });
+
+      new Chart(document.getElementById('weightChart'), chartConfig('Body Weight', weightData, '#38bdf8'));
+      new Chart(document.getElementById('caloriesChart'), chartConfig('Calories', caloriesData, '#fb923c'));
+      new Chart(document.getElementById('cardioChart'), chartConfig('Cardio Minutes', cardioData, '#34d399'));
+      new Chart(document.getElementById('pushupsChart'), chartConfig('Max Pushups', pushupsData, '#f472b6'));
+    }
+
+    const meals = {
+      breakfast: [
+        {
+          name: 'Greek Yogurt Parfait',
+          description: 'High protein, quick prep',
+          calories: '~320 cal',
+          shopping: ['Greek yogurt (plain)', 'Mixed berries', 'Granola', 'Honey'],
+          instructions: [
+            'Layer 1 cup Greek yogurt in a bowl',
+            'Add 1/2 cup mixed berries',
+            'Top with 1/4 cup granola',
+            'Drizzle with 1 tsp honey'
+          ]
+        },
+        {
+          name: 'Veggie Egg Scramble',
+          description: 'Protein-packed breakfast',
+          calories: '~280 cal',
+          shopping: ['Eggs', 'Spinach', 'Cherry tomatoes', 'Bell peppers', 'Olive oil'],
+          instructions: [
+            'Heat 1 tsp olive oil in a pan',
+            'Sauté diced bell peppers and tomatoes for 2 min',
+            'Add handful of spinach until wilted',
+            'Pour in 2 beaten eggs and scramble until cooked'
+          ]
+        },
+        {
+          name: 'Avocado Toast',
+          description: 'Simple and nutritious',
+          calories: '~310 cal',
+          shopping: ['Whole grain bread', 'Avocado', 'Eggs', 'Red pepper flakes', 'Salt'],
+          instructions: [
+            'Toast 2 slices of whole grain bread',
+            'Mash 1/2 avocado and spread on toast',
+            'Top with a fried or poached egg',
+            'Season with salt and red pepper flakes'
+          ]
+        },
+        {
+          name: 'Protein Pancakes',
+          description: 'Fluffy and filling',
+          calories: '~340 cal',
+          shopping: ['Banana', 'Eggs', 'Protein powder', 'Oats', 'Cinnamon', 'Maple syrup'],
+          instructions: [
+            'Blend 1 banana, 2 eggs, 1 scoop protein powder, 1/4 cup oats',
+            'Add pinch of cinnamon',
+            'Pour batter onto hot griddle to make 3-4 pancakes',
+            'Cook 2-3 min per side, serve with maple syrup'
+          ]
+        }
+      ],
+      lunch: [
+        {
+          name: 'Chicken & Quinoa Bowl',
+          description: 'Balanced protein and grains',
+          calories: '~420 cal',
+          shopping: ['Chicken breast', 'Quinoa', 'Broccoli', 'Carrots', 'Soy sauce', 'Garlic'],
+          instructions: [
+            'Cook 1/2 cup quinoa according to package',
+            'Season and grill 4 oz chicken breast',
+            'Steam broccoli and carrots for 5 min',
+            'Combine all, drizzle with soy sauce and minced garlic'
+          ]
+        },
+        {
+          name: 'Grilled Chicken Caesar',
+          description: 'Classic protein-rich salad',
+          calories: '~390 cal',
+          shopping: ['Chicken breast', 'Romaine lettuce', 'Parmesan cheese', 'Caesar dressing', 'Croutons'],
+          instructions: [
+            'Season and grill 4 oz chicken breast',
+            'Chop romaine lettuce and place in bowl',
+            'Slice grilled chicken and add to lettuce',
+            'Top with 2 tbsp Caesar dressing, parmesan, and croutons'
+          ]
+        },
+        {
+          name: 'Turkey Avocado Wrap',
+          description: 'Quick and portable',
+          calories: '~370 cal',
+          shopping: ['Whole wheat tortilla', 'Sliced turkey', 'Avocado', 'Lettuce', 'Tomato', 'Mustard'],
+          instructions: [
+            'Lay tortilla flat and spread thin layer of mustard',
+            'Layer 3-4 oz sliced turkey in center',
+            'Add sliced avocado, lettuce, and tomato',
+            'Roll tightly, slice in half diagonally'
+          ]
+        },
+        {
+          name: 'Caprese Salad with Chicken',
+          description: 'Italian-inspired fresh meal',
+          calories: '~360 cal',
+          shopping: ['Chicken breast', 'Fresh mozzarella', 'Tomatoes', 'Fresh basil', 'Balsamic vinegar', 'Olive oil'],
+          instructions: [
+            'Grill or pan-cook 4 oz chicken breast, slice',
+            'Slice tomatoes and mozzarella',
+            'Arrange chicken, tomatoes, mozzarella, and basil on plate',
+            'Drizzle with balsamic vinegar and olive oil'
+          ]
+        }
+      ],
+      dinner: [
+        {
+          name: 'Chicken Fajita Bowl',
+          description: 'Mexican-inspired dinner',
+          calories: '~440 cal',
+          shopping: ['Chicken breast', 'Bell peppers', 'Onion', 'Black beans', 'Brown rice', 'Fajita seasoning', 'Salsa'],
+          instructions: [
+            'Cook 1/2 cup brown rice',
+            'Slice chicken, peppers, and onion into strips',
+            'Sauté with fajita seasoning until chicken is cooked',
+            'Serve over rice with black beans and salsa'
+          ]
+        },
+        {
+          name: 'Turkey Stir-Fry',
+          description: 'Quick and lean protein',
+          calories: '~410 cal',
+          shopping: ['Ground turkey', 'Bell peppers', 'Snap peas', 'Brown rice', 'Ginger', 'Soy sauce'],
+          instructions: [
+            'Cook 1/2 cup brown rice',
+            'Brown 4 oz ground turkey in pan',
+            'Add sliced peppers and snap peas, cook 5 min',
+            'Season with ginger and soy sauce, serve over rice'
+          ]
+        },
+        {
+          name: 'Beef and Broccoli',
+          description: 'Asian-style comfort food',
+          calories: '~430 cal',
+          shopping: ['Beef sirloin', 'Broccoli', 'Soy sauce', 'Garlic', 'Ginger', 'Brown rice'],
+          instructions: [
+            'Cook 1/2 cup brown rice',
+            'Slice 5 oz beef into thin strips',
+            'Stir-fry beef with garlic and ginger until browned',
+            'Add broccoli florets and soy sauce, cook 5 min, serve over rice'
+          ]
+        },
+        {
+          name: 'Baked Chicken Parmesan',
+          description: 'Healthier Italian classic',
+          calories: '~420 cal',
+          shopping: ['Chicken breast', 'Marinara sauce', 'Mozzarella cheese', 'Parmesan', 'Italian seasoning', 'Whole wheat pasta'],
+          instructions: [
+            'Preheat oven to 375°F, cook pasta according to package',
+            'Season chicken breast with Italian seasoning',
+            'Bake chicken 20 min, top with marinara and mozzarella',
+            'Bake 5 more min until cheese melts, serve over pasta'
+          ]
+        }
+      ]
+    };
+
+    function renderMeals() {
+      const mealsTab = document.getElementById('mealsTab');
+      mealsTab.innerHTML = `
+        <h2 style="margin-bottom: 16px;">Breakfast</h2>
+        <div class="meals-grid" id="breakfastMeals"></div>
+        <h2 style="margin: 32px 0 16px 0;">Lunch</h2>
+        <div class="meals-grid" id="lunchMeals"></div>
+        <h2 style="margin: 32px 0 16px 0;">Dinner</h2>
+        <div class="meals-grid" id="dinnerMeals"></div>
+      `;
+
+      ['breakfast', 'lunch', 'dinner'].forEach(type => {
+        const container = document.getElementById(type + 'Meals');
+        meals[type].forEach((meal, idx) => {
+          const card = document.createElement('div');
+          card.className = 'meal-card';
+          card.innerHTML = `
+            <h3>${meal.name}</h3>
+            <p>${meal.description}</p>
+            <p><strong>${meal.calories}</strong></p>
+            <div class="meal-details hidden" id="${type}-${idx}">
+              <h4>Shopping List:</h4>
+              <ul>${meal.shopping.map(item => `<li>${item}</li>`).join('')}</ul>
+              <h4>Instructions:</h4>
+              <ol>${meal.instructions.map(step => `<li>${step}</li>`).join('')}</ol>
+            </div>
+          `;
+          card.onclick = () => {
+            const details = document.getElementById(`${type}-${idx}`);
+            details.classList.toggle('hidden');
+          };
+          container.appendChild(card);
+        });
+      });
+    }
+
+    renderCalendar();
+  </script>
+</body>
+
+</html>
