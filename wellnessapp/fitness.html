@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>30-Day Beginner Fitness Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      border: 2px solid transparent;
+    }
+
+    .card.today {
+      border-color: var(--accent);
+    }
+
+    .day {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .workout-name {
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .rest {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>30-Day Beginner Fitness Plan</h1>
+  <div class="subtitle">
+    No equipment • Low impact • Beginner friendly
+  </div>
+
+  <div class="grid" id="workoutGrid"></div>
+
+  <footer>
+    Aim for consistency. Walk daily. Rest when needed.
+  </footer>
+
+  <script>
+    const workouts = {
+      A: {
+        name: "Low-Impact Full Body",
+        moves: [
+          "Chair squats – 12 reps",
+          "Incline push-ups (wall/counter) – 8–12 reps",
+          "Standing glute kickbacks – 12 / leg",
+          "Standing knee raises – 10 / side",
+          "March in place – 45 sec",
+          "2–3 rounds"
+        ]
+      },
+      B: {
+        name: "Lower Body & Fat Burn",
+        moves: [
+          "Sit-to-stand squats – 12 reps",
+          "Reverse lunges (short step) – 8 / leg",
+          "Calf raises – 15 reps",
+          "Wall sit – 20–30 sec",
+          "March or step-back taps – 45 sec",
+          "2–3 rounds"
+        ]
+      },
+      C: {
+        name: "Upper Body & Core",
+        moves: [
+          "Incline push-ups – 8–12 reps",
+          "Standing shoulder taps – 20 taps",
+          "Wall push hold – 20–30 sec",
+          "Dead bug – 8 / side",
+          "Standing torso twists – 30 sec",
+          "2–3 rounds"
+        ]
+      },
+      D: {
+        name: "Low-Impact Cardio",
+        moves: [
+          "March in place – 60 sec",
+          "Bodyweight squats – 12 reps",
+          "Step-back taps – 45 sec",
+          "Modified mountain climbers – 30 sec",
+          "March carry (imaginary weights) – 60 sec",
+          "2–3 rounds"
+        ]
+      },
+      RECOVERY: {
+        name: "Active Recovery",
+        moves: [
+          "Easy walk – 20–30 min",
+          "Light stretching – 10 min",
+          "Focus on breathing"
+        ]
+      },
+      REST: {
+        name: "Rest Day",
+        moves: ["Hydrate, sleep, light movement optional"]
+      }
+    };
+
+    const schedule = ["A", "B", "C", "D", "A", "RECOVERY", "REST"];
+    const grid = document.getElementById("workoutGrid");
+
+    const today = new Date().getDate(); // simple local highlight
+
+    for (let day = 1; day <= 30; day++) {
+      const type = schedule[(day - 1) % 7];
+      const workout = workouts[type];
+
+      const card = document.createElement("div");
+      card.className = "card";
+      if (day === today) card.classList.add("today");
+
+      card.innerHTML = `
+        <div class="day">Day ${day}</div>
+        <div class="workout-name">${workout.name}</div>
+        <ul>
+          ${workout.moves.map(m => `<li>${m}</li>`).join("")}
+        </ul>
+      `;
+
+      if (type === "REST") {
+        card.querySelector("ul").classList.add("rest");
+      }
+
+      grid.appendChild(card);
+    }
+  </script>
+
+</body>
+
+</html>
