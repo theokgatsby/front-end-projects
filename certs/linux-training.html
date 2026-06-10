@@ -108,6 +108,46 @@
   </div>
   <div class="section">Section 4:</div>
   <div class="card">
+   <div class="subsection">Filters / Text Procesors Commands</div>
+   <ul class="notes">
+    <hr />
+    <li>cut - Extract columns from a file</li>
+    <li>
+     awk - Designed for data extraction, mostly used to extract fields from
+     output
+    </li>
+    <li>cat seinfeld-characters | awk '{$2="Osborne" ; print $0}'</li>
+    <li>awk 'length($0) > 15' seinfeld-characters</li>
+    <li>ls -l | awk '{if($9 == "seinfeld") print $0;}'</li>
+    <li>ls -l | awk '{print NF}'</li>
+    <hr />
+    <li>grep - Search for keyword in files/output</li>
+    <li>grep Seinfeld seinfeld-characters</li>
+    <li>grep -c Seinfeld seinfeld-characters (count entries)</li>
+    <li>grep -n Seinfeld seinfeld-characters (show line numbers)</li>
+    <li>grep -i Seinfeld seinfeld-characters (ignore case)</li>
+    <li>grep -v Seinfeld seinfeld-characters (show those without a match)</li>
+    <li>grep -v Seinfeld seinfeld-characters | awk '{print $1}' | cut -c1-3</li>
+    <li></li>
+    <hr />
+    <li>egrep - Search for multiple keywords</li>
+    <li>egrep -i "Seinfeld|Kramer" seinfeld-characters</li>
+    <hr />
+    <li>sort - Sort lines of text files</li>
+    <li>uniq - Report or filter out duplicate lines</li>
+    <li>wc - Word count</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection"></div>
+   <ul class="notes">
+    <hr />
+    <li></li>
+   </ul>
+  </div>
+
+  <div class="card">
    <div class="subsection"></div>
    <ul class="notes">
     <hr />
