@@ -1,64 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Certification Notes</title>
-  <link rel="stylesheet" href="./style.css" />
-  <style>
-    .menu-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      gap: 20px;
-    }
-
-    .menu-title {
-      font-size: 48px;
-      font-weight: 700;
-      color: rgb(221, 221, 221);
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .menu-button {
-      background-color: rgb(82, 82, 82);
-      color: rgb(221, 221, 221);
-      padding: 20px 40px;
-      border: 2px solid #667eea;
-      border-radius: 15px;
-      font-size: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .menu-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      background-color: #667eea;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Portfolio and project hub - certification notes and front-end projects.">
+  <meta name="author" content="Preston">
+  <title>Preston — Projects & Certifications</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Preston — Projects & Certifications">
+  <meta property="og:description" content="A unified homepage linking to certification notes and front-end projects.">
+  <meta property="og:type" content="website">
 </head>
 
 <body>
-  <div class="menu-container">
-    <div class="menu-title">Certification Notes</div>
-    <a href="./certs/aplus-core-one.html" class="menu-button">A+ Core 1 (220-1201)</a>
-    <a href="./certs/aplus-core-two.html" class="menu-button">A+ Core 2 (220-1202)</a>
-    <a href="./certs/cloud-practitioner.html" class="menu-button">AWS Cloud Practictioner Essentials</a>
-    <a href="./certs/linux-training.html" class="menu-button">Linux Training</a>
-    <div class="menu-title">Front End Projects</div>
-    <a href="./wellnessapp/wellness.html" class="menu-button">Wellness App</a>
-    <a href="./tindog/tindog.html" class="menu-button">Tindog</a>
-    <a href="./oldschool/randumbizer-bingo.html" class="menu-button">Bingo Overlap Tracker</a>
-    <a href="./japanese/hiragana-flashcards.html" class="menu-button">Hiragana Flashcards</a>
-  </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Preston Osborne</h1>
+        <p class="tagline">Projects, certifications, and notes</p>
+      </div>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="projects" class="container section-grid">
+      <h3 class="section-title">Front-end Projects</h3>
+      <div class="grid">
+        <a class="card" href="/tindog/tindog.html">
+          <h4>Tindog</h4>
+          <p>Responsive landing page demo with interactive sections.</p>
+        </a>
+
+        <a class="card" href="/wellnessapp/wellness.html">
+          <h4>Wellness App</h4>
+          <p>Simple wellness UI and examples.</p>
+        </a>
+
+        <a class="card" href="/japanese/hiragana-flashcards.html">
+          <h4>Hiragana Flashcards</h4>
+          <p>Learning tool for Japanese hiragana.</p>
+        </a>
+
+        <a class="card" href="/oldschool/randumbizer-bingo.html">
+          <h4>Bingo Overlap Tracker</h4>
+          <p>Board evaluation for Lucky 2025 Bingo.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="certifications" class="container section-grid">
+      <h3 class="section-title">Certification Notes</h3>
+      <div class="grid">
+        <a class="card" href="/certs/aplus-core-one.html">
+          <h4>A+ Core 1</h4>
+          <p>220-1201 notes</p>
+        </a>
+        <a class="card" href="/certs/aplus-core-two.html">
+          <h4>A+ Core 2</h4>
+          <p>220-1202 notes</p>
+        </a>
+        <a class="card" href="/certs/cloud-practitioner.html">
+          <h4>AWS Cloud Practitioner</h4>
+          <p>Essentials and exam notes</p>
+        </a>
+        <a class="card" href="/certs/linux-training.html">
+          <h4>Linux Training</h4>
+          <p>Commands and concepts</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h3 class="section-title">Contact</h3>
+      <p>Email: me@prestonm.cc</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/preston-o-8b362417a/" target="_blank" rel="noopener">preston-o</a></p>
+      <p>GitHub: <a href="https://github.com/theokgatsby" target="_blank" rel="noopener">theokgatsby</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Preston</p>
+    </div>
+  </footer>
+
+  <script>
+    // small enhancement: current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
