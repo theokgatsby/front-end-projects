@@ -1,0 +1,6 @@
+name = "front-end-projects"
+compatibility_date = "2026-06-13"
+
+# Upload repository root as static assets for Cloudflare Pages upload step.
+# Adjust "directory" to a build output (e.g., "dist") if you add a build step.
+assets = { directory = "./" }
