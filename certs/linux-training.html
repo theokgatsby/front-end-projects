@@ -140,18 +140,38 @@
   </div>
 
   <div class="card">
-   <div class="subsection"></div>
+   <div class="subsection">Text Processing Commands</div>
    <ul class="notes">
     <hr />
-    <li></li>
+    <li>sort - Sort lines of text files</li>
+    <li>sort seinfeld-characters</li>
+    <li>sort -r file (reversed)</li>
+    <li>sort -k2 file (sorts by second column value)</li>
+    <li>ls -l | sort -k9</li>
+    <hr />
+    <li>uniq - Hides duplicate sequential entries</li>
+    <li>Always use with sort first!</li>
+    <li>sort seinfeld-characters | uniq</li>
+    <li>sort file | uniq -c (Shows count of each unique)</li>
+    <li>sort file | uniq -d (Only show duplicates)</li>
+    <li>ls -l | sort | uniq</li>
+    <hr />
+    <li>wc - Word count</li>
+    <li>wc file - Shows line count, words, and bytes</li>
+    <li>wc -l file - Shows line count</li>
+    <li>wc -w file - Shows word count</li>
+    <li>wc -c file - Shows byte count</li>
    </ul>
   </div>
 
   <div class="card">
-   <div class="subsection"></div>
+   <div class="subsection">Compare Files</div>
    <ul class="notes">
     <hr />
-    <li></li>
+    <li>diff - Compare files line by line</li>
+    <li>diff file1 file2</li>
+    <li>cmp - Compare files byte by byte</li>
+    <li>cmp file1 file2</li>
    </ul>
   </div>
 
