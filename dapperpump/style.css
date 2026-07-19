@@ -1,0 +1,31 @@
+.hero {
+ background:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("https://lirp.cdn-website.com/c52e93f8/dms3rep/multi/opt/Photo+-1-1920w.jpg")
+   center/cover;
+ height: 500px;
+ display: flex;
+ align-items: center;
+ color: white;
+ text-align: center;
+}
+
+nav.navbar {
+ background-color: #59a6f8;
+}
+
+.navbar-nav {
+ margin: auto;
+ white-space: nowrap;
+ font-weight: 700;
+}
+
+.header {
+ background-color: #d6e7f8;
+ white-space: nowrap;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 20px;
+ gap: 90px;
+}

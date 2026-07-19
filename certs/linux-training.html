@@ -112,6 +112,9 @@
    <ul class="notes">
     <hr />
     <li>cut - Extract columns from a file</li>
+    <li>cut -d "," -f1 merged.txt > items.txt</li>
+    <li>-d: Delimiter</li>
+    <li>-f1: Extract from the first field</li>
     <li>
      awk - Designed for data extraction, mostly used to extract fields from
      output
@@ -176,10 +179,163 @@
   </div>
 
   <div class="card">
-   <div class="subsection"></div>
+   <div class="subsection">sed Command</div>
    <ul class="notes">
     <hr />
-    <li></li>
+    <li>Replace a string in a file</li>
+    <li>sed 's/old_string/new_string/g' file</li>
+    <li>sed -i : Actually changes the file</li>
+    <li>new_string can be blank to remove content</li>
+    <hr />
+    <li>Find and delete a line</li>
+    <li>sed '/Seinfeld/d' seinfeld-characters</li>
+    <hr />
+    <li>Remove empty lines</li>
+    <li>sed '/^$/d' file</li>
+    <hr />
+    <li>Remove first or n lines in a file</li>
+    <li>sed '1d' file (removes first line)</li>
+    <li>sed '1,3d' file (removes first 3 lines)</li>
+    <hr />
+    <li>Replace tabs with spaces</li>
+    <li>sed 's/\t/ /g' file</li>
+    <hr />
+    <li>Show defined lines from a file</li>
+    <li>sed -n 12,18p file (shows lines 12-18)</li>
+    <li>sed 12,18d file (removes lines 12-18)</li>
+    <li>sed G file (inserts blank line after each line)</li>
+    <li>sed '8!s/Seinfeld/S/g' file (replaces all but line 8)</li>
+    <li>:%s/Seinfeld/Peter/ (replace all in vim)</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">User Account Mgmt</div>
+   <ul class="notes">
+    <hr />
+    <li>useradd {}</li>
+    <li>groupadd {}</li>
+    <li>userdel {}</li>
+    <li>groupdel {}</li>
+    <li>usermod -G superheroes spiderman</li>
+    <li>chgrp -R superheroes spiderman</li>
+    <li>
+     useradd -g superheroes -s /bin/bash -c "Ironman Character" -m -d
+     /home/ironman ironman
+    </li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">systemtctl</div>
+   <ul class="notes">
+    <hr />
+    <li>systemctl start|stop|status servicename.service</li>
+    <li>systemctl enable|disable servicename.service</li>
+    <li>systemctl restart|reload servicename.service</li>
+    <li>systemctl list-units --all</li>
+    <hr />
+    <li>
+     To add service: Create unit file in /etc/systemd/system/servicename.service
+    </li>
+    <li>systemctl poweroff|halt|reboot</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">Kill Process Signals</div>
+   <ul class="notes">
+    <hr />
+    <li>kill -{} PID</li>
+    <li>SIGTERM - Graceful termination</li>
+    <li>SIGKILL - Forceful termination</li>
+    <li>SIGSTOP - Pause process</li>
+    <li>SIGCONT - Resume process</li>
+    <li>SIGSEGV - Segmentation fault, invalid memory location</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">Kill Real-Time Signals</div>
+   <ul class="notes">
+    <hr />
+    <li>Send extra information</li>
+    <li>SIGRTMIN - Marks beginning of signal range</li></li>
+    <li>SIGRTMAX - Marks end of signal range</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">System Health Lab Task 1: </div>
+   <ul class="notes">
+    <hr />
+    <li>Check system usage and resources</li>
+    <li>Manage and monitor processes</li>
+    <li>Check disk usage: df -h</li>
+    <li>Check memory usage: free -h</li>
+    <li>Check running processes: top</li>
+    <hr />
+    <li>Review system log files</li>
+    <li>List Log directory: ls /var/log</li>
+    <li>Check the contents of a log file</li>
+    <li>head -n 10 /var/log/auth.log</li>
+    <li>tail -n 10 /var/log/auth.log</li>
+    <li>less /var/log/auth.log</li>
+    <hr />
+    <li>Manage and monitor processes</li>
+    <li>Start a process in the background: sleep 100 &</li>
+    <li>View background jobs: jobs</li>
+    <li>Move job to background: bg %1</li>
+    <li>Move job to foreground: fg %1</li>
+    <li>Check user processes: ps -u labsuser</li>
+    <li>Run process with modified priority: nice -n 5 sleep 200 &</li>
+    <hr />
+    <li>Summarize system health information</li>
+    <li>View active sessions and activity: w</li>
+    <li>Check logged-in users: who</li>
+    <li>Check login history: last | head -n 10</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">System Maintenance Commands</div>
+   <ul class="notes">
+    <hr />
+    <li>shutdown</li>
+    <li>init</li>
+    <li>reboot</li>
+    <li>halt - Forces a shutdown as if holding the power button</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">Changing the Hostname</div>
+   <ul class="notes">
+    <hr />
+    <li>hostnamectl set-hostname newhostname</li>
+    <li>Must reboot for changes to take effect</li>
+   </ul>
+  </div>
+
+  <div class="card">
+   <div class="subsection">Finding System Information</div>
+   <ul class="notes">
+    <hr />
+    <li>General Info: uname -a</li>
+    <li>lsb_release -a</li>
+    <li>cat /etc/os-release</li>
+    <li>dmidecode</li>
+   </ul>
+  </div>
+
+    <div class="card">
+   <div class="subsection">Terminal Control Keys</div>
+   <ul class="notes">
+    <hr />
+    <li>CTRL-u: Erase everything you've typed on current line</li>
+    <li>CTRL-c: Stop/kill a command</li>
+    <li>CTRL-z: Suspend a command</li>
+    <li>CTRL-d: Exit from interactive program</li>
    </ul>
   </div>
  </body>
