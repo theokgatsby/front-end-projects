@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">💰 Budget Dashboard</span>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-light" onclick="downloadData()">Download Data</button>
+        <button class="btn btn-sm btn-outline-light" onclick="document.getElementById('fileInput').click()">Load Data</button>
+        <input type="file" id="fileInput" style="display: none;" accept=".json" onchange="uploadData(event)">
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container-fluid py-4">
+
+    <!-- Summary Cards Row -->
+    <div class="row mb-4">
+      <div class="col-md-4 mb-3">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <h6 class="card-title text-white-50">Net Monthly</h6>
+            <h3 class="card-text" id="netMonthly">$0.00</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <h6 class="card-title text-white-50">Current Total</h6>
+            <h3 class="card-text" id="retirementTotal">$0.00</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="row">
+      <!-- Left Column: Monthly Income, Expenses & Retirement -->
+      <div class="col-lg-6 mb-4">
+
+        <!-- Monthly -->
+        <div class="card mb-4">
+          <div class="card-header bg-light">
+            <h5 class="mb-0">Monthly</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-3">
+                <tbody id="monthlyTable">
+                </tbody>
+              </table>
+            </div>
+            <div class="row g-2">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm" id="monthlyNameInput" placeholder="Name">
+              </div>
+              <div class="col">
+                <input type="number" class="form-control form-control-sm" id="monthlyAmountInput" placeholder="Amount (+/-)" step="0.01">
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-sm btn-primary" onclick="addMonthly()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retirement Accounts -->
+        <div class="card">
+          <div class="card-header bg-light">
+            <h5 class="mb-0">Retirement Accounts</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-3">
+                <tbody id="retirementTable">
+                </tbody>
+              </table>
+            </div>
+            <div class="row g-2">
+              <div class="col">
+                <input type="text" class="form-control form-control-sm" id="retirementNameInput" placeholder="Account name">
+              </div>
+              <div class="col">
+                <input type="number" class="form-control form-control-sm" id="retirementAmountInput" placeholder="Balance" step="0.01">
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-sm btn-primary" onclick="addRetirement()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Investment Portfolio -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-header bg-light">
+            <h5 class="mb-0">Investment Portfolio</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm table-hover mb-3">
+                <thead class="table-light">
+                  <tr>
+                    <th>Stock</th>
+                    <th class="text-end">Shares</th>
+                    <th class="text-end">Purchase Price</th>
+                    <th class="text-end">Current Price</th>
+                    <th class="text-end">Gain/Loss</th>
+                    <th class="text-end">%</th>
+                    <th class="text-end">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="portfolioTable">
+                </tbody>
+              </table>
+            </div>
+            <div class="border-top pt-3">
+              <h6>Add New Stock</h6>
+              <div class="row g-2">
+                <div class="col-md-2">
+                  <input type="text" class="form-control form-control-sm" id="stockSymbolInput" placeholder="AAPL">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-sm" id="stockSharesInput" placeholder="Shares" step="0.0001">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-sm" id="stockPurchaseInput" placeholder="Buy $" step="0.01">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-sm" id="stockCurrentInput" placeholder="Current $" step="0.01">
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-sm btn-success" onclick="addStock()">Add Stock</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
