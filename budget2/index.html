@@ -14,11 +14,7 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">💰 Budget Dashboard</span>
-      <div class="d-flex gap-2">
-        <button class="btn btn-sm btn-outline-light" onclick="downloadData()">Download Data</button>
-        <button class="btn btn-sm btn-outline-light" onclick="document.getElementById('fileInput').click()">Load Data</button>
-        <input type="file" id="fileInput" style="display: none;" accept=".json" onchange="uploadData(event)">
-      </div>
+      <div></div>
     </div>
   </nav>
 
@@ -27,7 +23,7 @@
 
     <!-- Summary Cards Row -->
     <div class="row mb-4">
-      <div class="col-md-4 mb-3">
+      <div class="col-sm-4 mb-4">
         <div class="card bg-primary text-white">
           <div class="card-body">
             <h6 class="card-title text-white-50">Net Monthly</h6>
@@ -35,10 +31,18 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+      <div class="col-sm-4 mb-4">
         <div class="card bg-info text-white">
           <div class="card-body">
-            <h6 class="card-title text-white-50">Current Total</h6>
+            <h6 class="card-title text-white-50">Stocks</h6>
+            <h3 class="card-text" id="stockTotal">$0.00</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <h6 class="card-title text-white-50">Retirement</h6>
             <h3 class="card-text" id="retirementTotal">$0.00</h3>
           </div>
         </div>
@@ -56,22 +60,51 @@
             <h5 class="mb-0">Monthly</h5>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive mb-3">
+              <h6 class="mb-2">Required / Non-optional</h6>
               <table class="table table-sm table-hover mb-3">
-                <tbody id="monthlyTable">
+                <thead class="table-light">
+                  <tr>
+                    <th>Name</th>
+                    <th class="text-end">Amount</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="monthlyTableRequired">
+                </tbody>
+              </table>
+              <h6 class="mb-2">Personal</h6>
+              <table class="table table-sm table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Name</th>
+                    <th class="text-end">Amount</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="monthlyTablePersonal">
                 </tbody>
               </table>
             </div>
             <div class="row g-2">
-              <div class="col">
+              <div class="col-3">
                 <input type="text" class="form-control form-control-sm" id="monthlyNameInput" placeholder="Name">
               </div>
-              <div class="col">
-                <input type="number" class="form-control form-control-sm" id="monthlyAmountInput" placeholder="Amount (+/-)" step="0.01">
+              <div class="col-4">
+                <input type="text" class="form-control form-control-sm" id="monthlyAmountInput" placeholder="Amount or formula">
+              </div>
+              <div class="col-3">
+                <select class="form-select form-select-sm" id="monthlyCategoryInput">
+                  <option value="Required">Required</option>
+                  <option value="Personal">Personal</option>
+                </select>
               </div>
               <div class="col-auto">
                 <button class="btn btn-sm btn-primary" onclick="addMonthly()">Add</button>
               </div>
+            </div>
+            <div class="form-text mt-2">
+              Use math and references like <code>Five9 * 0.04 * -1</code> or <code>value("401k") * 0.04</code>.
             </div>
           </div>
         </div>
@@ -79,7 +112,7 @@
         <!-- Retirement Accounts -->
         <div class="card">
           <div class="card-header bg-light">
-            <h5 class="mb-0">Retirement Accounts</h5>
+            <h5 class="mb-0">Accounts</h5>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -94,9 +127,6 @@
               </div>
               <div class="col">
                 <input type="number" class="form-control form-control-sm" id="retirementAmountInput" placeholder="Balance" step="0.01">
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-sm btn-primary" onclick="addRetirement()">Add</button>
               </div>
             </div>
           </div>
@@ -121,7 +151,6 @@
                     <th class="text-end">Current Price</th>
                     <th class="text-end">Gain/Loss</th>
                     <th class="text-end">%</th>
-                    <th class="text-end">Action</th>
                   </tr>
                 </thead>
                 <tbody id="portfolioTable">
@@ -134,16 +163,16 @@
                 <div class="col-md-2">
                   <input type="text" class="form-control form-control-sm" id="stockSymbolInput" placeholder="AAPL">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <input type="number" class="form-control form-control-sm" id="stockSharesInput" placeholder="Shares" step="0.0001">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <input type="number" class="form-control form-control-sm" id="stockPurchaseInput" placeholder="Buy $" step="0.01">
                 </div>
                 <div class="col-md-2">
                   <input type="number" class="form-control form-control-sm" id="stockCurrentInput" placeholder="Current $" step="0.01">
                 </div>
-                <div class="col-auto">
+                <div class="col-md-2">
                   <button class="btn btn-sm btn-success" onclick="addStock()">Add Stock</button>
                 </div>
               </div>
