@@ -1,0 +1,104 @@
+/* Homepage-only refinements for the Dimension template. */
+#header .content .inner {
+  width: min(100%, 42rem);
+  margin: 0 auto;
+}
+
+#header .eyebrow {
+  margin: 0 0 1rem;
+  color: #b8d9d6;
+  font-size: 0.68rem;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+#header h1 {
+  margin-bottom: 0.75rem;
+}
+
+#header .content p:last-child {
+  margin-bottom: 0;
+}
+
+#main article {
+  text-align: center;
+}
+
+#main article h2.major {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.contact-details {
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.contact-details li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.35);
+}
+
+.contact-details li span {
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  font-size: 0.7rem;
+}
+
+.contact-details li a {
+  text-align: right;
+}
+
+.project-list {
+  margin: 1.5rem 0 0;
+}
+
+.project-list li a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.project-list li a span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+@media screen and (min-width: 481px) {
+  .project-list li a {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-details li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-details li a {
+    text-align: left;
+  }
+
+  .project-list li a {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .project-list li a span {
+    text-align: center;
+  }
+}
