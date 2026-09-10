@@ -30,6 +30,11 @@
   text-align: center;
 }
 
+#main article > p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
 .contact-details {
   margin: 1.5rem 0 2rem;
   padding: 0;
@@ -57,21 +62,73 @@
 }
 
 .project-list {
-  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.75rem 0 0;
+}
+
+#work .project-list li,
+#training .project-list li {
+  border: 0;
+  padding: 0;
 }
 
 .project-list li a {
+  position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
+  min-height: 4.5rem;
+  padding: 1.15rem 3.25rem 1.15rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
   text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-list li a::after {
+  position: absolute;
+  top: 50%;
+  right: 1.35rem;
+  color: #b8d9d6;
+  content: '\2192';
+  font-size: 1.35rem;
+  transform: translateY(-50%);
+}
+
+.project-list li a:hover {
+  background: rgba(184, 217, 214, 0.14);
+  border-color: #b8d9d6;
+  transform: translateY(-2px);
+}
+
+.project-list li a strong {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .project-list li a span {
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   text-align: right;
+}
+
+#work .project-list li a {
+  min-height: 6.5rem;
+  align-items: center;
+  border-color: rgba(184, 217, 214, 0.65);
+  background: linear-gradient(110deg, rgba(184, 217, 214, 0.18), rgba(255, 255, 255, 0.06));
+}
+
+#work .project-list li a strong {
+  font-size: 1.35rem;
+}
+
+#work .project-list li a span {
+  color: #d8e9e7;
 }
 
 @media screen and (min-width: 481px) {
@@ -96,9 +153,14 @@
     flex-direction: column;
     gap: 0.25rem;
     text-align: center;
+    padding-right: 3rem;
   }
 
   .project-list li a span {
     text-align: center;
+  }
+
+  .project-list li a::after {
+    right: 1rem;
   }
 }
